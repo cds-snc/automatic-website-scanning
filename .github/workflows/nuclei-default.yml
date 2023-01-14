@@ -19,9 +19,13 @@ jobs:
         uses: projectdiscovery/nuclei-action@main
         with:
           target: ${{ matrix.domain }}
-          flags: "-severity critical,high -stats"
+          flags: "-stats"
           user-agent: "User-Agent:'Nuclei - Vulnerability Scan (Have a nice day)'"
           json: true
-      - name: Cat result
-        run: |
-          cat nuclei.log
+      - name: Report deployment to Sentinel
+        uses: cds-snc/sentinel-forward-data-action@main
+        with:
+          file_name: nuclei.log
+          log_type: Max_Test
+          log_analytics_workspace_id: ${{ secrets.LOG_ANALYTICS_WORKSPACE_ID }}
+          log_analytics_workspace_key: ${{ secrets.LOG_ANALYTICS_WORKSPACE_KEY }}
