@@ -25,7 +25,7 @@ jobs:
           rules_file_name: "oswasp_zap_rules.tsv"
       - name: Extract alerts
         run: |
-          jq '.site[] as $site | .site[] | .alerts[] | .host = $site."@host" | .' report_json.json > output.jsonl
+          jq -c '.site[] as $site | .site[] | .alerts[] | .host = $site."@host" | .' report_json.json > output.jsonl
           cat output.jsonl
       - name: Forward results to Sentinel
         uses: cds-snc/sentinel-forward-data-action@main
