@@ -24,6 +24,5 @@ jobs:
           json: true
       - name: Cat result
         run: |
-          cat nuclei.json
           cat nuclei.log
           cat nuclei.sarif
