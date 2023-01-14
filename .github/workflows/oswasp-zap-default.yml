@@ -1,0 +1,34 @@
+name: Runs OWASP ZAP full scans
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 16 * * *"
+  pull_request:
+
+jobs:
+  oswasp-zap:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        domain:
+          - https://www.example.com
+          # - https://digital.canada.ca
+          # - https://numerique.canada.ca
+    steps:
+      - uses: actions/checkout@3ba5ee6fac7e0e30e2ea884e236f282d3a775891
+      - name: OSWASP ZAP - Vulnerability Scan
+        uses: zaproxy/action-full-scan@v0.4.0
+        with:
+          target: ${{ matrix.domain }}
+          cmd_options: "-J report.json"
+          rules_file_name: "oswasp_zap_rules.tsv"
+      - name: Cat
+        run: |
+          cat report.json
+      #- name: Forward results to Sentinel
+      #  uses: cds-snc/sentinel-forward-data-action@main
+      #  with:
+      #    file_name: nuclei.log
+      #    log_type: CDS_Nuclei_Results
+      #    log_analytics_workspace_id: ${{ secrets.LOG_ANALYTICS_WORKSPACE_ID }}
+      #    log_analytics_workspace_key: ${{ secrets.LOG_ANALYTICS_WORKSPACE_KEY }}

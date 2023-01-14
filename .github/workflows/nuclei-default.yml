@@ -3,7 +3,6 @@ on:
   workflow_dispatch:
   schedule:
     - cron: "0 12 * * *"
-  pull_request:
 
 jobs:
   nuclei-default:
@@ -20,12 +19,11 @@ jobs:
         with:
           target: ${{ matrix.domain }}
           flags: "-stats"
-          user-agent: "User-Agent:'Nuclei - Vulnerability Scan (Have a nice day)'"
           json: true
-      - name: Report deployment to Sentinel
+      - name: Forward results to Sentinel
         uses: cds-snc/sentinel-forward-data-action@main
         with:
           file_name: nuclei.log
-          log_type: Max_Test
+          log_type: CDS_Nuclei_Results
           log_analytics_workspace_id: ${{ secrets.LOG_ANALYTICS_WORKSPACE_ID }}
           log_analytics_workspace_key: ${{ secrets.LOG_ANALYTICS_WORKSPACE_KEY }}
