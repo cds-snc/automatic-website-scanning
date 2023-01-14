@@ -20,11 +20,10 @@ jobs:
         uses: zaproxy/action-full-scan@v0.4.0
         with:
           target: ${{ matrix.domain }}
-          cmd_options: "-J report.json"
           rules_file_name: "oswasp_zap_rules.tsv"
       - name: Cat
         run: |
-          cat report.json
+          cat report_json.json
       #- name: Forward results to Sentinel
       #  uses: cds-snc/sentinel-forward-data-action@main
       #  with:
