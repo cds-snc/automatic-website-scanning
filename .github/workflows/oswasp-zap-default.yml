@@ -19,11 +19,14 @@ jobs:
       - name: OSWASP ZAP - Vulnerability Scan
         uses: zaproxy/action-full-scan@v0.4.0
         with:
+          allow_issue_writing: false
+          cmd_options: '-s'
           target: ${{ matrix.domain }}
           rules_file_name: "oswasp_zap_rules.tsv"
-      - name: Cat
+      - name: Extract alerts
         run: |
-          cat report_json.json
+          jq '.site[].alerts[]' report_json.json > output.jsonl
+          cat output.jsonl
       #- name: Forward results to Sentinel
       #  uses: cds-snc/sentinel-forward-data-action@main
       #  with:
