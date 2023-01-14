@@ -5,5 +5,5 @@ The purpose of this repository is to coordinate the automatic scanning of CDS we
 
 | Site | Lighthouse | Nuclei | OSWASP-Zap |
 |---|---|---|---|
-|[https://digital.canada.ca/](https://digital.canada.ca/)|❌|❌|❌|
-|[https://numerique.canada.ca/](https://numerique.canada.ca/)|❌|❌|❌|
+|[https://digital.canada.ca/](https://digital.canada.ca/)|⭕️|✅|⭕️|
+|[https://numerique.canada.ca/](https://numerique.canada.ca/)|⭕️|✅|⭕️|

@@ -1,0 +1,27 @@
+name: Runs nuclei with default templates
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 12 * * *"
+  pull_request:
+
+jobs:
+  nuclei-default:
+    runs-on: ubuntu-latest
+    strategy:
+      domain:
+        - https://digital.canada.ca
+        - https://numerique.canada.ca
+    steps:
+      - uses: actions/checkout@3ba5ee6fac7e0e30e2ea884e236f282d3a775891
+      - name: Nuclei - Vulnerability Scan
+        uses: projectdiscovery/nuclei-action@main
+        with:
+          target: ${{ matrix.domain }}
+          flags: "-severity critical,high,medium,low -stats"
+          user-agent: "User-Agent:'Nuclei - Vulnerability Scan (Have a nice day)'"
+          json: true
+          output: nuclei.json
+      - name: Cat result
+        run: |
+          cat nuclei.json
