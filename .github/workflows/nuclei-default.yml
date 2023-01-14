@@ -19,9 +19,9 @@ jobs:
         uses: projectdiscovery/nuclei-action@main
         with:
           target: ${{ matrix.domain }}
+          flags: "-severity critical,high -stats"
           user-agent: "User-Agent:'Nuclei - Vulnerability Scan (Have a nice day)'"
           json: true
       - name: Cat result
         run: |
           cat nuclei.log
-          cat nuclei.sarif
