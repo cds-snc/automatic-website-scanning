@@ -1,10 +1,9 @@
-# Generic Project Template
+# Automatic website scanning
 
-This repository provides some base files for setting up a repository at
-CDS. Plan is to create more project template for specific technologies:
+The purpose of this repository is to coordinate the automatic scanning of CDS websites for security vulnerabilities and accessibility issues.
 
-- project-template-terraform
-- project-template-python
-- project-template-nodejs
 
-Note that default community health files are maintained at https://github.com/cds-snc/.github 
+| Site | Lighthouse | Nuclei | OSWASP-Zap |
+|---|---|---|---|
+|[https://digital.canada.ca/](https://digital.canada.ca/)|❌|❌|❌|
+|[https://numerique.canada.ca/](https://numerique.canada.ca/)|❌|❌|❌|
