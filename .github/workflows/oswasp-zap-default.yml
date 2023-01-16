@@ -25,12 +25,13 @@ jobs:
           rules_file_name: "oswasp_zap_rules.tsv"
       - name: Extract alerts
         run: |
+          cat report_json.json
           jq -c '.site[] as $site | .site[] | .alerts[] | .host = $site."@host" | .' report_json.json > output.jsonl
           cat output.jsonl
-      - name: Forward results to Sentinel
-        uses: cds-snc/sentinel-forward-data-action@main
-        with:
-          file_name: output.jsonl
-          log_type: Max_Test
-          log_analytics_workspace_id: ${{ secrets.LOG_ANALYTICS_WORKSPACE_ID }}
-          log_analytics_workspace_key: ${{ secrets.LOG_ANALYTICS_WORKSPACE_KEY }}
+      #- name: Forward results to Sentinel
+      #  uses: cds-snc/sentinel-forward-data-action@main
+      #  with:
+      #    file_name: output.jsonl
+      #    log_type: Max_Test
+      #    log_analytics_workspace_id: ${{ secrets.LOG_ANALYTICS_WORKSPACE_ID }}
+      #    log_analytics_workspace_key: ${{ secrets.LOG_ANALYTICS_WORKSPACE_KEY }}
