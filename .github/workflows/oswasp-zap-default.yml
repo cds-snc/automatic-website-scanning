@@ -11,9 +11,8 @@ jobs:
     strategy:
       matrix:
         domain:
-          - https://www.example.com
           # - https://digital.canada.ca
-          # - https://numerique.canada.ca
+          - https://numerique.canada.ca
     steps:
       - uses: actions/checkout@3ba5ee6fac7e0e30e2ea884e236f282d3a775891
       - name: OSWASP ZAP - Vulnerability Scan
