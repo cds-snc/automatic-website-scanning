@@ -2,7 +2,7 @@ name: Runs nuclei with default templates
 on:
   workflow_dispatch:
   schedule:
-    - cron: "0 12 * * *"
+    - cron: "15 12 * * 0"
 
 jobs:
   nuclei-default:
@@ -11,6 +11,7 @@ jobs:
       matrix:
         domain:
           - https://digital.canada.ca
+          - https://learning-resources.cdssandbox.xyz
           - https://numerique.canada.ca
           - https://secret.cdssandbox.xyz
     steps:
