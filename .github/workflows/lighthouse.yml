@@ -1,0 +1,29 @@
+name: Use Lighthouse CI Github action and send results to Sentinel
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "15 12 * * 0"
+  pull_request:
+
+jobs:
+  lighthouse-ci-action:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        domain:
+          - https://secret.cdssandbox.xyz
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-go@v3
+        with:
+          go-version: '^1.19' # The Go version to download (if necessary) and use.
+      - name: Install spider and run on domain
+        run: |
+          sudo GO111MODULE=on go get -u github.com/jaeles-project/gospider
+          sudo cp /go/bin/gospider /usr/local/go/bin/
+          gospider -s "${{ matrix.domain }}" -o output -c 10 -d 1 --json --no-redirect
+          ls output/
+          cat output/secret_cdssandbox_xyz
+
+
+
