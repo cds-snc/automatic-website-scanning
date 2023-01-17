@@ -21,7 +21,7 @@ jobs:
         id: spider
         run: |
           sudo GOBIN=/usr/local/bin/ GO111MODULE=on go install github.com/jaeles-project/gospider@latest
-          gospider -s "${{ matrix.domain }}" --quiet -c 10 -d 4 --json --no-redirect | grep '"type":"url"' | jq -r '.output' | sed 's/\/*$//' | sort -u > urls.txt
+          gospider -s "${{ matrix.domain }}" --quiet -c 10 -d 4 --json --no-redirect --blacklist ".(jpg|jpeg|gif|css|tif|tiff|png|ttf|woff|woff2|ico|xml)" | grep '"type":"url"' | jq -r '.output' | sed 's/\/*$//' | sort -u > urls.txt
           urls=$(cat urls.txt)
           jq --arg urls "$urls" '.ci.collect.url = ($urls | split("\n"))' lighthouserc_template.json > lighthouserc.json
           cat lighthouserc.json
