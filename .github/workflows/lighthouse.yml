@@ -20,8 +20,7 @@ jobs:
       - name: Install spider and run on domain
         run: |
           sudo GOBIN=/usr/local/bin/ GO111MODULE=on go install github.com/jaeles-project/gospider@latest
-          gospider -s "${{ matrix.domain }}" -o output -c 10 -d 1 --json --no-redirect
-          ls output/
+          gospider -s "${{ matrix.domain }}" -o output -c 10 -d 2 --json --no-redirect -q
           cat output/secret_cdssandbox_xyz
 
 
