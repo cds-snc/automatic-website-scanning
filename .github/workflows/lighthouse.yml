@@ -30,5 +30,8 @@ jobs:
         uses: treosh/lighthouse-ci-action@v9
         with:
          configPath: 'lighthouserc.json'
+      - name: Send data to sentinel action
+        run: |
+          echo ${{steps.lhci_action.outputs.manifest}}
 
 
