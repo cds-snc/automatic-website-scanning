@@ -1,0 +1,31 @@
+name: Runs nuclei with default templates
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "15 12 * * 0"
+
+jobs:
+  nuclei-default:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        domain:
+          - https://digital.canada.ca
+          - https://learning-resources.cdssandbox.xyz
+          - https://numerique.canada.ca
+          - https://secret.cdssandbox.xyz
+    steps:
+      - uses: actions/checkout@3ba5ee6fac7e0e30e2ea884e236f282d3a775891
+      - name: Nuclei - Vulnerability Scan
+        uses: projectdiscovery/nuclei-action@main
+        with:
+          target: ${{ matrix.domain }}
+          flags: "-stats"
+          json: true
+      - name: Forward results to Sentinel
+        uses: cds-snc/sentinel-forward-data-action@main
+        with:
+          file_name: nuclei.log
+          log_type: CDS_Nuclei_Results
+          log_analytics_workspace_id: ${{ secrets.LOG_ANALYTICS_WORKSPACE_ID }}
+          log_analytics_workspace_key: ${{ secrets.LOG_ANALYTICS_WORKSPACE_KEY }}

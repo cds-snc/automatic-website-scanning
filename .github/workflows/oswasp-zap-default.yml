@@ -1,0 +1,34 @@
+name: Runs OWASP ZAP full scans
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "23 16 * * 0"
+
+jobs:
+  oswasp-zap:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        domain:
+          - https://learning-resources.cdssandbox.xyz
+          - https://secret.cdssandbox.xyz
+    steps:
+      - uses: actions/checkout@3ba5ee6fac7e0e30e2ea884e236f282d3a775891
+      - name: OSWASP ZAP - Vulnerability Scan
+        uses: zaproxy/action-full-scan@v0.4.0
+        with:
+          allow_issue_writing: false
+          cmd_options: '-s'
+          target: ${{ matrix.domain }}
+          rules_file_name: "oswasp_zap_rules.tsv"
+      - name: Extract alerts
+        run: |
+          jq -c '.site[] as $site | .site[] | .alerts[] | .host = $site."@host" | .' report_json.json > output.jsonl
+          sort -u output.jsonl > unique_output.jsonl
+      - name: Forward results to Sentinel
+        uses: cds-snc/sentinel-forward-data-action@main
+        with:
+          file_name: unique_output.jsonl
+          log_type: CDS_OSWASPZap_Results
+          log_analytics_workspace_id: ${{ secrets.LOG_ANALYTICS_WORKSPACE_ID }}
+          log_analytics_workspace_key: ${{ secrets.LOG_ANALYTICS_WORKSPACE_KEY }}
