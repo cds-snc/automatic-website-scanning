@@ -20,7 +20,6 @@ jobs:
       - name: Install spider and run on domain
         run: |
           sudo go install github.com/jaeles-project/gospider@latest
-          sudo cp /go/bin/gospider /usr/local/go/bin/
           gospider -s "${{ matrix.domain }}" -o output -c 10 -d 1 --json --no-redirect
           ls output/
           cat output/secret_cdssandbox_xyz
