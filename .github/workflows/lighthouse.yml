@@ -32,7 +32,7 @@ jobs:
          configPath: 'lighthouserc.json'
       - name: Munge data
         run: |
-          jq -n '{"manifest": env.MANIFEST}' --argjson MANIFEST "${{steps.lhci_action.outputs.manifest}}" | jq -r .manifest > manifest.txt
+          jq -n '{"manifest": env.MANIFEST}' --arg MANIFEST "${{steps.lhci_action.outputs.manifest}}" | jq -r .manifest > manifest.txt
           cat manifest.txt | jq -c 'map({"url": .url, "performance": .summary.performance, "accessibility": .summary.accessibility, "seo": .summary.seo, "pwa": .summary.pwa, "bestPractices": .summary."best-practices"})' | jq -c '.[]' > data.txt
           cat data.txt
 
