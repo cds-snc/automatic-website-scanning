@@ -22,7 +22,7 @@ jobs:
         run: |
           sudo GOBIN=/usr/local/bin/ GO111MODULE=on go install github.com/jaeles-project/gospider@latest
           gospider -s "${{ matrix.domain }}" --quiet -c 10 -d 4 --json --no-redirect | grep '"type":"url"' | jq -r '.output' | sed 's/\/*$//' | sort -u > urls.txt
-          cat urls.txt
+          echo "urls=$(cat urls.txt)" >> $GITHUB_OUTPUT
       # - name: Test output
       #  run: cat '${{ steps.spider.outputs.urls }}'
 
