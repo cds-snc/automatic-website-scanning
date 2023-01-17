@@ -21,7 +21,7 @@ jobs:
         id: spider
         run: |
           sudo GOBIN=/usr/local/bin/ GO111MODULE=on go install github.com/jaeles-project/gospider@latest
-          echo "urls=$(gospider -s "https://secret.cdssandbox.xyz" --quiet -c 10 -d 4 --json --no-redirect | grep '\"type\":\"url\"' | jq -r '.output' | sed 's/\/*$//' | sort -u)" >> $GITHUB_OUTPUT
+          echo "urls=$(gospider -s \"${{ matrix.domain }}\" --quiet -c 10 -d 4 --json --no-redirect | grep '\"type\":\"url\"' | jq -r '.output' | sed 's/\/*$//' | sort -u)" >> $GITHUB_OUTPUT
       - name: Test output
         run: cat '${{ steps.spider.outputs.urls }}'
 
