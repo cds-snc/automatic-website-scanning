@@ -25,7 +25,10 @@ jobs:
           urls=$(cat urls.txt)
           jq --arg urls "$urls" '.ci.collect.url = ($urls | split("\n"))' lighthouserc_template.json > lighthouserc.json
           cat lighthouserc.json
-      # - name: Test output
-      #  run: cat '${{ steps.spider.outputs.urls }}'
+      - name: Lighthouse CI Action
+        id: lhci_action
+        uses: treosh/lighthouse-ci-action@v9
+        with:
+         configPath: 'lighthouserc.json'
 
 
