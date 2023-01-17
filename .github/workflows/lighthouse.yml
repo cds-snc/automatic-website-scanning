@@ -11,7 +11,7 @@ jobs:
     strategy:
       matrix:
         domain:
-          - https://secret.cdssandbox.xyz
+          - https://numerique.canada.ca/
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-go@v3
