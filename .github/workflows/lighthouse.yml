@@ -19,7 +19,7 @@ jobs:
           go-version: '^1.19' # The Go version to download (if necessary) and use.
       - name: Install spider and run on domain
         run: |
-          sudo go install github.com/jaeles-project/gospider@latest
+          sudo GOBIN=/usr/local/bin/ GO111MODULE=on go install github.com/jaeles-project/gospider@latest
           gospider -s "${{ matrix.domain }}" -o output -c 10 -d 1 --json --no-redirect
           ls output/
           cat output/secret_cdssandbox_xyz
