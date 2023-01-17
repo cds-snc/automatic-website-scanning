@@ -22,7 +22,8 @@ jobs:
         run: |
           sudo GOBIN=/usr/local/bin/ GO111MODULE=on go install github.com/jaeles-project/gospider@latest
           gospider -s "${{ matrix.domain }}" --quiet -c 10 -d 4 --json --no-redirect | grep '"type":"url"' | jq -r '.output' | sed 's/\/*$//' | sort -u > urls.txt
-          jq --argfile urls urls.txt '.ci.collect.url = $urls | split("\n")' lighthouserc.json
+          urls=$(cat urls.txt)
+          jq --arg urls "$urls" '.ci.collect.url = ($urls | split("\n"))' lighthouserc_template.json > lighthouserc.json
           cat lighthouserc.json
       # - name: Test output
       #  run: cat '${{ steps.spider.outputs.urls }}'
