@@ -3,12 +3,12 @@ on:
   workflow_dispatch:
   schedule:
     - cron: "3 5 * * 6"
-  pull_request:
 
 jobs:
   lighthouse-ci-action:
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
         domain:
           - https://digital.canada.ca

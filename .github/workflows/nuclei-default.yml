@@ -8,6 +8,7 @@ jobs:
   nuclei-default:
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
         domain:
           - https://digital.canada.ca
