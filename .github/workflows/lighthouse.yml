@@ -2,7 +2,7 @@ name: Use Lighthouse CI Github action and send results to Sentinel
 on:
   workflow_dispatch:
   schedule:
-    - cron: "15 12 * * 0"
+    - cron: "3 5 * * 6"
   pull_request:
 
 jobs:
@@ -11,7 +11,10 @@ jobs:
     strategy:
       matrix:
         domain:
-          - https://numerique.canada.ca/
+          - https://digital.canada.ca
+          - https://learning-resources.cdssandbox.xyz
+          - https://numerique.canada.ca
+          - https://secret.cdssandbox.xyz
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-go@v3
@@ -37,7 +40,7 @@ jobs:
         uses: cds-snc/sentinel-forward-data-action@main
         with:
           file_name: data.jsonl
-          log_type: Max_Test
+          log_type: CDS_Lighthouse_Results
           log_analytics_workspace_id: ${{ secrets.LOG_ANALYTICS_WORKSPACE_ID }}
           log_analytics_workspace_key: ${{ secrets.LOG_ANALYTICS_WORKSPACE_KEY }}
 
