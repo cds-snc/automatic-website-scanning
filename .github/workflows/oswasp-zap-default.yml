@@ -8,6 +8,7 @@ jobs:
   oswasp-zap:
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
         domain:
           - https://learning-resources.cdssandbox.xyz

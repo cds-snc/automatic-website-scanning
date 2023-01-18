@@ -1,0 +1,46 @@
+name: Use Lighthouse CI Github action and send results to Sentinel
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "3 5 * * 6"
+
+jobs:
+  lighthouse-ci-action:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        domain:
+          - https://digital.canada.ca
+          - https://learning-resources.cdssandbox.xyz
+          - https://numerique.canada.ca
+          - https://secret.cdssandbox.xyz
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-go@v3
+        with:
+          go-version: '^1.19'
+      - name: Install spider and run on domain
+        id: spider
+        run: |
+          sudo GOBIN=/usr/local/bin/ GO111MODULE=on go install github.com/jaeles-project/gospider@latest
+          gospider -s "${{ matrix.domain }}" --quiet -c 10 -d 3 --json --no-redirect --blacklist ".(jpg|jpeg|gif|css|tif|tiff|png|ttf|woff|woff2|ico|xml|doc|docx|pdf|xls|csv|zip|gz|tar|js)" | grep '"type":"url"' | jq -r '.output' | sed 's/\/*$//' | sort -u > urls.txt
+          urls=$(cat urls.txt)
+          jq --arg urls "$urls" '.ci.collect.url = ($urls | split("\n"))' lighthouserc_template.json > lighthouserc.json
+          cat lighthouserc.json
+      - name: Lighthouse CI Action
+        id: lhci_action
+        uses: treosh/lighthouse-ci-action@v9
+        with:
+         configPath: 'lighthouserc.json'
+      - name: Munge data
+        run: |
+          echo '${{steps.lhci_action.outputs.manifest}}' | jq -c 'map({"url": .url, "domain": "${{ matrix.domain }}", "performance": .summary.performance, "accessibility": .summary.accessibility, "seo": .summary.seo, "pwa": .summary.pwa, "bestPractices": .summary."best-practices"})' | jq -c '.[]' > data.jsonl
+      - name: Forward results to Sentinel
+        uses: cds-snc/sentinel-forward-data-action@main
+        with:
+          file_name: data.jsonl
+          log_type: CDS_Lighthouse_Results
+          log_analytics_workspace_id: ${{ secrets.LOG_ANALYTICS_WORKSPACE_ID }}
+          log_analytics_workspace_key: ${{ secrets.LOG_ANALYTICS_WORKSPACE_KEY }}
+
