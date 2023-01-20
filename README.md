@@ -3,7 +3,7 @@
 The purpose of this repository is to coordinate the automatic scanning of CDS websites for security vulnerabilities and accessibility issues. Issues are automatically exported to Azure Sentinel for visualization and triage.
 
 
-| Site | Lighthouse | Nuclei | OSWASP-Zap |
+| Site | [Lighthouse](https://github.com/treosh/lighthouse-ci-action) | [Nuclei](https://github.com/projectdiscovery/nuclei-action) | [OSWASP-Zap](https://github.com/zaproxy/action-full-scan) |
 |---|---|---|---|
 |[https://digital.canada.ca/](https://digital.canada.ca/)|✅|✅|⭕️|
 |[https://learning-resources.cdssandbox.xyz](https://learning-resources.cdssandbox.xyz)|✅|✅|✅|
