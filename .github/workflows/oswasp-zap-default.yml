@@ -14,9 +14,9 @@ jobs:
           - https://learning-resources.cdssandbox.xyz
           - https://secret.cdssandbox.xyz
     steps:
-      - uses: actions/checkout@3ba5ee6fac7e0e30e2ea884e236f282d3a775891
+      - uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c
       - name: OSWASP ZAP - Vulnerability Scan
-        uses: zaproxy/action-full-scan@v0.4.0
+        uses: zaproxy/action-full-scan@6eade0f93b10fad8cfb4e63b979703a2cbd0cc98 # v0.4.0
         with:
           allow_issue_writing: false
           cmd_options: '-s'
