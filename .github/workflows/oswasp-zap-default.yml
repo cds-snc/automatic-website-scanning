@@ -5,7 +5,7 @@ on:
     - cron: "23 16 * * 0"
 
 jobs:
-  oswasp-zap:
+  owasp-zap:
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -15,13 +15,13 @@ jobs:
           - https://secret.cdssandbox.xyz
     steps:
       - uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c
-      - name: OSWASP ZAP - Vulnerability Scan
+      - name: OWASP ZAP - Vulnerability Scan
         uses: zaproxy/action-full-scan@6eade0f93b10fad8cfb4e63b979703a2cbd0cc98 # v0.4.0
         with:
           allow_issue_writing: false
           cmd_options: '-s'
           target: ${{ matrix.domain }}
-          rules_file_name: "oswasp_zap_rules.tsv"
+          rules_file_name: "owasp_zap_rules.tsv"
       - name: Extract alerts
         run: |
           jq -c '.site[] as $site | .site[] | .alerts[] | .host = $site."@host" | .' report_json.json > output.jsonl
@@ -30,6 +30,6 @@ jobs:
         uses: cds-snc/sentinel-forward-data-action@main
         with:
           file_name: unique_output.jsonl
-          log_type: CDS_OSWASPZap_Results
+          log_type: CDS_OWASPZap_Results
           log_analytics_workspace_id: ${{ secrets.LOG_ANALYTICS_WORKSPACE_ID }}
           log_analytics_workspace_key: ${{ secrets.LOG_ANALYTICS_WORKSPACE_KEY }}
