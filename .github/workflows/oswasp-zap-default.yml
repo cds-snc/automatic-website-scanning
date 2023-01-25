@@ -4,6 +4,9 @@ on:
   schedule:
     - cron: "23 16 * * 0"
 
+env:
+  CONTACT_FORMS: support|contactus|contact|careers|carrieres|contact-us|contact-us-fr|contactez
+
 jobs:
   oswasp-zap:
     runs-on: ubuntu-latest
@@ -19,7 +22,7 @@ jobs:
         uses: zaproxy/action-full-scan@6eade0f93b10fad8cfb4e63b979703a2cbd0cc98 # v0.4.0
         with:
           allow_issue_writing: false
-          cmd_options: '-s -z "-config globalexcludeurl.url_list.url.regex=^.*/(support|contactus|contact|careers|carrieres)/?$"'
+          cmd_options: '-s -z "-config globalexcludeurl.url_list.url.regex=^.*/(${{ env.CONTACT_FORMS }})/?$"'
           target: ${{ matrix.domain }}
           rules_file_name: "oswasp_zap_rules.tsv"
       - name: Extract alerts
