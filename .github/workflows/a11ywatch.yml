@@ -27,7 +27,7 @@ jobs:
           TLD: false
       - name: Sort data
         run: |
-          a11ywatch -r > out.json
+          a11ywatch -R > out.json
           cat out.json
 
       # - name: Munge data
