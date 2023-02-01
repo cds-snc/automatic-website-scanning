@@ -19,6 +19,8 @@ jobs:
       - uses: a11ywatch/github-action@v1.13.0
         with:
           WEBSITE_URL: ${{ matrix.domain }}
+          DISABLE_PR_STATS: true
+          LIST: false
           SITE_WIDE: true
           SUBDOMAINS: false
           SLIM: true
