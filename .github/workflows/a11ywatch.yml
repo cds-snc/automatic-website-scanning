@@ -25,6 +25,10 @@ jobs:
           SUBDOMAINS: false
           SLIM: true
           TLD: false
+      - name: Sort data
+        run: |
+          a11ywatch -r > out.json
+          echo out.json
 
       # - name: Munge data
       #  run: |
