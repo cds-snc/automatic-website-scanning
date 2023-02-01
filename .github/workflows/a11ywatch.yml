@@ -21,8 +21,7 @@ jobs:
           WEBSITE_URL: ${{ matrix.domain }}
           SUBDOMAINS: false
           SLIM: true
-          UPGRADE: true
-
+          
       # - name: Munge data
       #  run: |
       #    echo '${{steps.lhci_action.outputs.manifest}}' | jq -c 'map({"url": .url, "domain": "${{ matrix.domain }}", "performance": .summary.performance, "accessibility": .summary.accessibility, "seo": .summary.seo, "pwa": .summary.pwa, "bestPractices": .summary."best-practices"})' | jq -c '.[]' > data.jsonl
