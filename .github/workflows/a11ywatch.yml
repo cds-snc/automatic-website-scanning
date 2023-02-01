@@ -25,10 +25,11 @@ jobs:
           SUBDOMAINS: false
           SLIM: true
           TLD: false
-      - name: Sort data
+      - name: Munge data
         run: |
           a11ywatch -R > out.json
-          cat out.json
+          jq -c '.data[] | del(.cdn_connected, .insight, .user_id)' out.json > output.jsonl
+          cat output.jsonl
 
       # - name: Munge data
       #  run: |
