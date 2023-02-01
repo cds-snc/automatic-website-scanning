@@ -28,7 +28,7 @@ jobs:
       - name: Sort data
         run: |
           a11ywatch -r > out.json
-          echo out.json
+          cat out.json
 
       # - name: Munge data
       #  run: |
