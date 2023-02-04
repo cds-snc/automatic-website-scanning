@@ -21,7 +21,7 @@ jobs:
           - https://design.alpha.canada.ca/en/
     steps:
       - uses: actions/checkout@dc323e67f16fb5f7663d20ff7941f27f5809e9b6 # v2.6.0
-      - uses: a11ywatch/github-action@v1.13.0
+      - uses: a11ywatch/github-action@b6c4b69cda04e0abc6a215b37251b737de4f331e # v1.13.0
         with:
           WEBSITE_URL: ${{ matrix.domain }}
           DISABLE_PR_STATS: true
