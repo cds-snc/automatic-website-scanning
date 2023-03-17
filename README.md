@@ -14,3 +14,4 @@ The purpose of this repository is to coordinate the automatic scanning of CDS we
 |[https://forms-staging.cdssandbox.xyz](https://forms-staging.cdssandbox.xyz)|✅|✅|✅|⭕️|
 |[https://design.alpha.canada.ca/en/](https://design.alpha.canada.ca/en/)|✅|✅|✅|⭕️|
 |[https://url-shortener.cdssandbox.xyz/](https://url-shortener.cdssandbox.xyz/)|✅|✅|✅|✅|
+|[https://design-system.alpha.canada.ca/en/](https://design.alpha.canada.ca/en/)|✅|✅|✅|⭕️|

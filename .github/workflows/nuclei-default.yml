@@ -20,6 +20,7 @@ jobs:
           - https://forms-staging.cdssandbox.xyz
           - https://design.alpha.canada.ca/en/
           - https://url-shortener.cdssandbox.xyz/
+          - https://design-system.alpha.canada.ca/en/
     steps:
       - uses: actions/checkout@27135e314dd1818f797af1db9dae03a9f045786b
       - name: Nuclei - Vulnerability Scan
