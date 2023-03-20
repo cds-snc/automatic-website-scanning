@@ -18,7 +18,7 @@ jobs:
           - https://secret.cdssandbox.xyz
           - https://url-shortener.cdssandbox.xyz/
     steps:
-      - uses: actions/checkout@27135e314dd1818f797af1db9dae03a9f045786b
+      - uses: actions/checkout@24cb9080177205b6e8c946b17badbe402adc938f
       - name: OWASP ZAP - Vulnerability Scan
         uses: zaproxy/action-full-scan@6eade0f93b10fad8cfb4e63b979703a2cbd0cc98 # v0.4.0
         with:
