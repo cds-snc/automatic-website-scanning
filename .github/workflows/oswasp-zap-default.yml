@@ -15,7 +15,7 @@ jobs:
       matrix:
         domain:
           - https://learning-resources.cdssandbox.xyz
-          - https://secret.cdssandbox.xyz
+          - https://encrypted-message.cdssandbox.xyz
           - https://url-shortener.cdssandbox.xyz/
     steps:
       - uses: actions/checkout@24cb9080177205b6e8c946b17badbe402adc938f
