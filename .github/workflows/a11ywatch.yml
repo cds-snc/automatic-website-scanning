@@ -22,8 +22,8 @@ jobs:
           - https://url-shortener.cdssandbox.xyz/
           - https://design-system.alpha.canada.ca/en/
     steps:
-      - uses: actions/checkout@dc323e67f16fb5f7663d20ff7941f27f5809e9b6 # v2.6.0
-      - uses: a11ywatch/github-action@b6c4b69cda04e0abc6a215b37251b737de4f331e # v1.13.0
+      - uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # v2.7.0
+      - uses: a11ywatch/github-action@d8f359ada0ceec58e9515c74a03c5b95ed70f2ec # v1.14.0
         with:
           WEBSITE_URL: ${{ matrix.domain }}
           DISABLE_PR_STATS: true

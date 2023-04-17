@@ -22,7 +22,7 @@ jobs:
           - https://url-shortener.cdssandbox.xyz/
           - https://design-system.alpha.canada.ca/en/
     steps:
-      - uses: actions/checkout@dc323e67f16fb5f7663d20ff7941f27f5809e9b6 # v2.6.0
+      - uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # v2.7.0
       - uses: actions/setup-go@6edd4406fa81c3da01a34fa6f6343087c207a568 # v3.5.0
         with:
           go-version: '^1.19'

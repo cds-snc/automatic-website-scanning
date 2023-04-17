@@ -22,7 +22,7 @@ jobs:
           - https://url-shortener.cdssandbox.xyz/
           - https://design-system.alpha.canada.ca/en/
     steps:
-      - uses: actions/checkout@24cb9080177205b6e8c946b17badbe402adc938f
+      - uses: actions/checkout@47fbe2df0ad0e27efb67a70beac3555f192b062f
       - name: Nuclei - Vulnerability Scan
         uses: projectdiscovery/nuclei-action@main
         with:
