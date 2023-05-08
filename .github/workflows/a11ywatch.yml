@@ -21,6 +21,7 @@ jobs:
           - https://design.alpha.canada.ca/en/
           - https://url-shortener.cdssandbox.xyz/
           - https://design-system.alpha.canada.ca/en/
+          - https://saas.cdssandbox.xyz/en/ 
     steps:
       - uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # v2.7.0
       - uses: a11ywatch/github-action@2c4be481d4fb88df27766ff764bde1832b901b42 # v1.14.1
@@ -43,4 +44,3 @@ jobs:
           log_type: CDS_A11ywatch_Results
           log_analytics_workspace_id: ${{ secrets.LOG_ANALYTICS_WORKSPACE_ID }}
           log_analytics_workspace_key: ${{ secrets.LOG_ANALYTICS_WORKSPACE_KEY }}
-
