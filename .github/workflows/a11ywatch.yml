@@ -24,7 +24,7 @@ jobs:
           - https://saas.cdssandbox.xyz/en/ 
     steps:
       - uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # v2.7.0
-      - uses: a11ywatch/github-action@2c4be481d4fb88df27766ff764bde1832b901b42 # v1.14.1
+      - uses: a11ywatch/github-action@75b2d0bbb437086f9991c768b2654620fe0024c3 # v1.15.0
         with:
           WEBSITE_URL: ${{ matrix.domain }}
           DISABLE_PR_STATS: true
