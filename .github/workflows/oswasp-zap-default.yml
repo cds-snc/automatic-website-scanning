@@ -20,7 +20,7 @@ jobs:
     steps:
       - uses: actions/checkout@96f53100ba2a5449eb71d2e6604bbcd94b9449b5
       - name: OWASP ZAP - Vulnerability Scan
-        uses: zaproxy/action-full-scan@6eade0f93b10fad8cfb4e63b979703a2cbd0cc98 # v0.4.0
+        uses: zaproxy/action-full-scan@bb42fb08b9103dc41cca2f758873275052df334e # v0.5.0
         with:
           allow_issue_writing: false
           cmd_options: '-s -z "-config globalexcludeurl.url_list.url.regex=^.*/(${{ env.CONTACT_FORMS }})/?$"'
