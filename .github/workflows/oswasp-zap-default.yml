@@ -17,6 +17,7 @@ jobs:
           - https://learning-resources.cdssandbox.xyz
           - https://encrypted-message.cdssandbox.xyz
           - https://url-shortener.cdssandbox.xyz/
+          - https://notification.canada.ca
     steps:
       - uses: actions/checkout@96f53100ba2a5449eb71d2e6604bbcd94b9449b5
       - name: OWASP ZAP - Vulnerability Scan
