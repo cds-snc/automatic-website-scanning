@@ -27,8 +27,9 @@ jobs:
         uses: zaproxy/action-baseline@v0.9.0
         with:
           allow_issue_writing: false
+          # -s short output format - dont show PASSes or example URLs
           # -j use the Ajax spider in addition to the traditional one
-          cmd_options: '-j'
+          cmd_options: '-s -j'
           target: ${{ matrix.domain }}
           rules_file_name: "owasp_zap_rules.tsv"
       - name: Extract alerts
