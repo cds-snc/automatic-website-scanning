@@ -1,13 +1,11 @@
-name: Runs OWASP ZAP full scans
+name: Runs OWASP ZAP baseline scans
 on:
   workflow_dispatch:
   schedule:
     - cron: "23 16 * * 0"
 
-env:
-  CONTACT_FORMS: support|contactus|contact|careers|carrieres|contact-us|contact-us-fr|contactez
-
 jobs:
+  # https://github.com/marketplace/actions/zap-baseline-scan
   owasp-zap:
     runs-on: ubuntu-latest
     strategy:
@@ -18,12 +16,15 @@ jobs:
           - https://url-shortener.cdssandbox.xyz/
           - https://staging.notification.cdssandbox.xyz
     steps:
-      - uses: actions/checkout@96f53100ba2a5449eb71d2e6604bbcd94b9449b5
-      - name: OWASP ZAP - Vulnerability Scan
-        uses: zaproxy/action-full-scan@994be0395c128170ba970e8443c222517f9f614d # v0.5.1
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          ref: master
+      - name: OWASP ZAP - Baseline Vulnerability Scan
+        uses: zaproxy/action-baseline@v0.9.0
         with:
           allow_issue_writing: false
-          cmd_options: '-s -z "-config globalexcludeurl.url_list.url.regex=^.*/(${{ env.CONTACT_FORMS }})/?$"'
+          cmd_options: '-j'
           target: ${{ matrix.domain }}
           rules_file_name: "owasp_zap_rules.tsv"
       - name: Extract alerts
