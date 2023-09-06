@@ -19,7 +19,6 @@ jobs:
           - https://staging.notification.cdssandbox.xyz
           - https://forms-staging.cdssandbox.xyz
           - https://design.alpha.canada.ca/en/
-          - https://url-shortener.cdssandbox.xyz/
           - https://design-system.alpha.canada.ca/en/
           - https://saas.cdssandbox.xyz/en/
     steps:

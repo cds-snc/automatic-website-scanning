@@ -14,8 +14,6 @@ jobs:
         domain:
           - https://encrypted-message.cdssandbox.xyz
           - http://encrypted-message.cdssandbox.xyz
-          - https://url-shortener.cdssandbox.xyz
-          - http://url-shortener.cdssandbox.xyz
           - https://staging.notification.cdssandbox.xyz
           - http://staging.notification.cdssandbox.xyz
     steps:
