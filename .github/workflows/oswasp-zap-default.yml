@@ -20,7 +20,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3.6.0
       - name: OWASP ZAP - Baseline Vulnerability Scan
-        uses: zaproxy/action-baseline@1e1871e84428617b969d4a1f981a8255630d54b0 # v0.10.0
+        uses: zaproxy/action-baseline@c5fd818161fb145060f307b6954434561c2c71f0 # v0.11.0
         with:
           allow_issue_writing: false
           # -s short output format - dont show PASSes or example URLs
