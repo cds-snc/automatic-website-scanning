@@ -22,7 +22,7 @@ jobs:
           - https://design-system.alpha.canada.ca/en/
           - https://saas.cdssandbox.xyz/en/ 
     steps:
-      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11
+      - uses: actions/checkout@b32f140b0c872d58512e0a66172253c302617b90
       - name: Nuclei - Vulnerability Scan
         uses: projectdiscovery/nuclei-action@main
         with:
