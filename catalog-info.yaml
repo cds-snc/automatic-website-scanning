@@ -1,0 +1,11 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: automatic-website-scanning
+  description: Runs automatic scanning tools against CDS website properties
+  labels:
+    license: MIT
+spec:
+  type: website
+  lifecycle: experimental
+  owner: cds-snc
