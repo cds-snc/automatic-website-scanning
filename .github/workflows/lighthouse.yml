@@ -12,13 +12,11 @@ jobs:
       matrix:
         domain:
           - https://digital.canada.ca
-          - https://learning-resources.cdssandbox.xyz
           - https://numerique.canada.ca
           - https://encrypted-message.cdssandbox.xyz
           - https://articles.cdssandbox.xyz
           - https://staging.notification.cdssandbox.xyz
           - https://forms-staging.cdssandbox.xyz
-          - https://design.alpha.canada.ca/en/
           - https://design-system.alpha.canada.ca/en/
     steps:
       - uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # v2.7.0
