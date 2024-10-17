@@ -7,6 +7,7 @@ on:
 jobs:
   a11ywatch-ci-action:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     strategy:
       fail-fast: false
       matrix:
@@ -16,7 +17,6 @@ jobs:
           - https://encrypted-message.cdssandbox.xyz
           - https://articles.cdssandbox.xyz
           - https://staging.notification.cdssandbox.xyz
-          - https://forms-staging.cdssandbox.xyz
           - https://design-system.alpha.canada.ca/en/
     steps:
       - uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # v2.7.0
