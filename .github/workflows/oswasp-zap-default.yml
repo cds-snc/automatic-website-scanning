@@ -20,6 +20,13 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3.6.0
+
+      - name: Extract domain name # Extract domain name from URL
+        id: extract_domain
+        run: |
+          STRIPPED_DOMAIN=$(echo "${{ matrix.domain }}" | sed -E 's|^https?://||' | sed 's|/.*||')
+          echo "domain_name=$STRIPPED_DOMAIN" >> $GITHUB_OUTPUT
+
       - name: OWASP ZAP - Baseline Vulnerability Scan
         uses: zaproxy/action-baseline@7c4deb10e6261301961c86d65d54a516394f9aed # v0.14.0
         with:
@@ -29,10 +36,13 @@ jobs:
           cmd_options: '-s -j'
           target: ${{ matrix.domain }}
           rules_file_name: "owasp_zap_rules.tsv"
+          artifact_name: "zap_scan_${{ steps.extract_domain.outputs.domain_name }}_${{ github.run_id }}"
+      
       - name: Extract alerts
         run: |
           jq -c '.site[] as $site | .site[] | .alerts[] | .host = $site."@host" | .' report_json.json > output.jsonl
           sort -u output.jsonl > unique_output.jsonl
+          
       - name: Forward results to Sentinel
         uses: cds-snc/sentinel-forward-data-action@main
         with:
