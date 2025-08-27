@@ -17,6 +17,7 @@ jobs:
           - https://staging.notification.cdssandbox.xyz
           - http://staging.notification.cdssandbox.xyz
           - https://app.gc-signin.cdssandbox.xyz/
+          - https://superset.cdssandbox.xyz/
     steps:
       - name: Checkout
         uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3.6.0
