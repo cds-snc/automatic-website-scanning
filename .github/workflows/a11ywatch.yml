@@ -21,7 +21,7 @@ jobs:
           - https://app.gc-signin.cdssandbox.xyz/
     steps:
       - uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # v2.7.0
-      - uses: a11ywatch/github-action@d61a01aad49cc54db0a669cc61b7e85f08994162 # v2.1.10
+      - uses: a11ywatch/github-action@0c8d05657a89863a4620b277e0b50ed87a8ca466 # v2.1.10 (includes commit not released yet)
         with:
           WEBSITE_URL: ${{ matrix.domain }}
           DISABLE_PR_STATS: true
