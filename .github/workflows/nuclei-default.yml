@@ -21,12 +21,16 @@ jobs:
           - https://app.gc-signin.cdssandbox.xyz/
           - https://superset.cdssandbox.xyz/
     steps:
-      - uses: actions/checkout@8edcb1bdb4e267140fa742c62e395cd74f332709
+      - name: Checkout
+        uses: actions/checkout@8edcb1bdb4e267140fa742c62e395cd74f332709
+
       - name: Nuclei - Vulnerability Scan
-        uses: projectdiscovery/nuclei-action@main
+        uses: projectdiscovery/nuclei-action@6a69b5015a4059e8804afcb33ff5e56bfd546908 # v2.0.1
         with:
           target: ${{ matrix.domain }}
-          flags: "-json-export -stats"
+          nuclei-version: "3.4.10"
+          flags: "-jsonl -jsonl-export nuclei.log -severity critical,high,medium,low -stats"
+
       - name: Forward results to Sentinel
         uses: cds-snc/sentinel-forward-data-action@main
         with:
