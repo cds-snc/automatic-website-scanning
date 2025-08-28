@@ -11,6 +11,14 @@ jobs:
       fail-fast: false
       matrix:
         domain:
+          - https://digital.canada.ca
+          - https://numerique.canada.ca
+          - https://encrypted-message.cdssandbox.xyz
+          - https://articles.cdssandbox.xyz
+          - https://staging.notification.cdssandbox.xyz
+          - https://forms-staging.cdssandbox.xyz
+          - https://design-system.alpha.canada.ca/en/
+          - https://app.gc-signin.cdssandbox.xyz/
           - https://superset.cdssandbox.xyz/
     steps:
       - name: Checkout
@@ -21,7 +29,7 @@ jobs:
         with:
           target: ${{ matrix.domain }}
           nuclei-version: "3.4.10"
-          flags: "-jsonl -jsonl-export nuclei.log -severity critical,high,medium,low,info -stats"
+          flags: "-jsonl -jsonl-export nuclei.log -severity critical,high,medium,low -stats"
 
       - name: Forward results to Sentinel
         uses: cds-snc/sentinel-forward-data-action@main
