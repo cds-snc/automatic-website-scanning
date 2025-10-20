@@ -16,7 +16,6 @@ jobs:
           - http://encrypted-message.cdssandbox.xyz
           - https://staging.notification.cdssandbox.xyz
           - http://staging.notification.cdssandbox.xyz
-          - https://app.gc-signin.cdssandbox.xyz/
           - https://superset.cdssandbox.xyz/
           - https://gc-signin.cdssandbox.xyz/
     steps:
