@@ -18,7 +18,6 @@ jobs:
           - https://staging.notification.cdssandbox.xyz
           - https://forms-staging.cdssandbox.xyz
           - https://design-system.alpha.canada.ca/en/
-          - https://app.gc-signin.cdssandbox.xyz/
           - https://superset.cdssandbox.xyz/
           - https://gc-signin.cdssandbox.xyz/
     steps:
