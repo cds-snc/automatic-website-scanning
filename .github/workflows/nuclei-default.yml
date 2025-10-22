@@ -29,7 +29,7 @@ jobs:
         with:
           target: ${{ matrix.domain }}
           nuclei-version: "3.4.10"
-          flags: "-jsonl -jsonl-export nuclei.log -severity critical,high,medium,low -stats"
+          flags: "-jsonl -jsonl-export nuclei.log -stats"
 
       - name: Forward results to Sentinel
         uses: cds-snc/sentinel-forward-data-action@main
