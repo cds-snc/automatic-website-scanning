@@ -19,7 +19,8 @@ jobs:
           - https://forms-staging.cdssandbox.xyz
           - https://design-system.alpha.canada.ca/en/
           - https://superset.cdssandbox.xyz/
-          - https://gc-signin.cdssandbox.xyz/
+          - http://sign-in.alpha.canada.ca/
+          - http://connexion.alpha.canada.ca/
     steps:
       - name: Checkout
         uses: actions/checkout@ff7abcd0c3c05ccf6adc123a8cd1fd4fb30fb493
