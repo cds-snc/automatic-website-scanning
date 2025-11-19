@@ -18,8 +18,8 @@ jobs:
           - https://staging.notification.cdssandbox.xyz
           - https://forms-staging.cdssandbox.xyz
           - https://design-system.alpha.canada.ca/en/
-          - http://sign-in.alpha.canada.ca/
-          - http://connexion.alpha.canada.ca/
+          - http://sign-in.alpha.canada.ca/en/
+          - http://connexion.alpha.canada.ca/fr/
     steps:
       - uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # v2.7.0
       - uses: actions/setup-go@be3c94b385c4f180051c996d336f57a34c397495 # v3.6.1
