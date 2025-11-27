@@ -20,6 +20,8 @@ jobs:
           - https://design-system.alpha.canada.ca/en/
           - http://sign-in.alpha.canada.ca/
           - http://connexion.alpha.canada.ca/
+          - https://sign-in.canada.ca
+          - https://connexion.canada.ca
     steps:
       - uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # v2.7.0
       - uses: a11ywatch/github-action@d61a01aad49cc54db0a669cc61b7e85f08994162 # v2.1.10 (includes commit to upgrade upload-artifact github action to v4 as v3 is deprecated)

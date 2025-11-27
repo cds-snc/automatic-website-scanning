@@ -21,6 +21,8 @@ jobs:
           - https://superset.cdssandbox.xyz/
           - http://sign-in.alpha.canada.ca/
           - http://connexion.alpha.canada.ca/
+          - https://sign-in.canada.ca
+          - https://connexion.canada.ca
     steps:
       - name: Checkout
         uses: actions/checkout@c2d88d3ecc89a9ef08eebf45d9637801dcee7eb5
