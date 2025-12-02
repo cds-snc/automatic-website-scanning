@@ -1,0 +1,7 @@
+site_name: "automatic-website-scanning"
+
+plugins:
+  - techdocs-core
+
+nav:
+  - Home: index.md
