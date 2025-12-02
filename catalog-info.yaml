@@ -5,7 +5,7 @@ metadata:
   description: Runs automatic scanning tools against CDS website properties
   labels:
     license: MIT
-annotations:
+  annotations:
     github.com/project-slug: cds-snc/automatic-website-scanning
     backstage.io/techdocs-ref: dir:.
 spec:
