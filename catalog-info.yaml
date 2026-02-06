@@ -2,13 +2,15 @@ apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
   name: automatic-website-scanning
-  description: Runs automatic scanning tools against CDS website properties
-  labels:
-    license: MIT
+  title: Automatic Website scanning
+  description: Coordinate the automatic scanning of CDS websites for security vulnerabilities and accessibility issues. 
   annotations:
     github.com/project-slug: cds-snc/automatic-website-scanning
     backstage.io/techdocs-ref: dir:.
 spec:
-  type: website
-  lifecycle: experimental
-  owner: cds-snc
+  type: tool
+  lifecycle: production
+  owner: group:cds-snc/internal-sre
+  system: sre-tools
+  domain: site-reliability-engineering
+
