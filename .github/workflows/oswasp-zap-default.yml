@@ -17,10 +17,9 @@ jobs:
           - https://staging.notification.cdssandbox.xyz
           - http://staging.notification.cdssandbox.xyz
           - https://superset.cdssandbox.xyz/
-          - http://sign-in.alpha.canada.ca/
+          - https://login.alpha.canada.ca/
           - http://connexion.alpha.canada.ca/
-          - https://sign-in.canada.ca
-          - https://connexion.canada.ca
+          - https://app.login-connexion.alpha.canada.ca/
     steps:
       - name: Checkout
         uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3.6.0
