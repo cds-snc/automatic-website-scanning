@@ -47,7 +47,7 @@ jobs:
           sort -u output.jsonl > unique_output.jsonl
           
       - name: Forward results to Sentinel
-        uses: cds-snc/sentinel-forward-data-action@main
+        uses: cds-snc/sentinel-forward-data-action@0c349852373284a1130f87f8b91896132b0fc138 # main
         with:
           file_name: unique_output.jsonl
           log_type: CDS_OWASPZap_Results
