@@ -37,7 +37,7 @@ jobs:
           a11ywatch -R > out.json
           jq -c '.data[] | del(.cdn_connected, .insight, .user_id)' out.json > output.jsonl
       - name: Forward results to Sentinel
-        uses: cds-snc/sentinel-forward-data-action@main
+        uses: cds-snc/sentinel-forward-data-action@0c349852373284a1130f87f8b91896132b0fc138 # main
         with:
           file_name: output.jsonl
           log_type: CDS_A11ywatch_Results

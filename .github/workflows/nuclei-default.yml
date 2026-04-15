@@ -34,7 +34,7 @@ jobs:
           flags: "-jsonl -jsonl-export nuclei.log -stats"
 
       - name: Forward results to Sentinel
-        uses: cds-snc/sentinel-forward-data-action@main
+        uses: cds-snc/sentinel-forward-data-action@0c349852373284a1130f87f8b91896132b0fc138 # main
         with:
           file_name: nuclei.log
           log_type: CDS_Nuclei_Results
