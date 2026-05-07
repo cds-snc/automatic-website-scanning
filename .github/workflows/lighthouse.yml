@@ -17,6 +17,7 @@ jobs:
           - https://articles.cdssandbox.xyz
           - https://staging.notification.cdssandbox.xyz
           - https://forms-staging.cdssandbox.xyz
+          - https://api.forms-staging.cdssandbox.xyz/
           - https://design-system.alpha.canada.ca/en/
           - https://login.alpha.canada.ca/
           - http://connexion.alpha.canada.ca

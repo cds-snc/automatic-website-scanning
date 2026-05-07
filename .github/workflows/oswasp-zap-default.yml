@@ -16,6 +16,8 @@ jobs:
           - http://encrypted-message.cdssandbox.xyz
           - https://staging.notification.cdssandbox.xyz
           - http://staging.notification.cdssandbox.xyz
+          - https://forms-staging.cdssandbox.xyz/
+          - https://api.forms-staging.cdssandbox.xyz/
           - https://superset.cdssandbox.xyz/
           - https://login.alpha.canada.ca/
           - http://connexion.alpha.canada.ca/
