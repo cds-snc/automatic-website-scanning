@@ -2,8 +2,10 @@
 """Scan configured domains for /.well-known/security.txt compliance."""
 
 import argparse
+import gzip
 import json
 import sys
+import zlib
 from collections import defaultdict
 from datetime import datetime, timezone
 from email.utils import parsedate_to_datetime
@@ -20,7 +22,23 @@ REQUIRED_FIELD_COUNTS = {
     "preferred-languages": 1,
     "expires": 1,
 }
-USER_AGENT = "cds-snc-security-txt-monitor/1.0"
+REQUEST_HEADERS = {
+    "User-Agent": (
+        "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 "
+        "(KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36"
+    ),
+    "Accept": "text/plain, text/*;q=0.9, */*;q=0.8",
+    "Accept-Encoding": "gzip, deflate",
+    "Accept-Language": "en-CA,en;q=0.9,fr-CA;q=0.8,fr;q=0.7",
+    "Cache-Control": "no-cache",
+    "Connection": "close",
+    "Pragma": "no-cache",
+    "Sec-Fetch-Dest": "document",
+    "Sec-Fetch-Mode": "navigate",
+    "Sec-Fetch-Site": "none",
+    "Sec-Fetch-User": "?1",
+    "Upgrade-Insecure-Requests": "1",
+}
 
 
 def security_txt_url(target):
@@ -76,6 +94,20 @@ def decode_body(body_bytes, charset):
         return body_bytes.decode("utf-8", errors="replace")
 
 
+def decompress_body(body_bytes, content_encoding):
+    encoding = (content_encoding or "").lower()
+
+    try:
+        if "gzip" in encoding:
+            return gzip.decompress(body_bytes)
+        if "deflate" in encoding:
+            return zlib.decompress(body_bytes)
+    except (OSError, zlib.error):
+        return body_bytes
+
+    return body_bytes
+
+
 def error_message(error):
     if isinstance(error, URLError):
         return str(error.reason)
@@ -84,18 +116,20 @@ def error_message(error):
 
 
 def fetch_security_txt(url, timeout):
-    request = Request(url, headers={"Accept": "text/plain, */*", "User-Agent": USER_AGENT})
+    request = Request(url, headers=REQUEST_HEADERS)
 
     try:
         with urlopen(request, timeout=timeout) as response:
-            body_bytes = response.read(MAX_RESPONSE_BYTES + 1)
+            compressed_body_bytes = response.read(MAX_RESPONSE_BYTES + 1)
+            body_bytes = decompress_body(compressed_body_bytes, response.headers.get("Content-Encoding"))
+            response_truncated = len(compressed_body_bytes) > MAX_RESPONSE_BYTES or len(body_bytes) > MAX_RESPONSE_BYTES
             charset = response.headers.get_content_charset() or "utf-8"
             return {
                 "body": decode_body(body_bytes[:MAX_RESPONSE_BYTES], charset),
                 "error": None,
                 "final_url": response.geturl(),
                 "http_status": response.status,
-                "response_truncated": len(body_bytes) > MAX_RESPONSE_BYTES,
+                "response_truncated": response_truncated,
             }
     except HTTPError as error:
         return {
