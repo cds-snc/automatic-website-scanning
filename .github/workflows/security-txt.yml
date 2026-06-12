@@ -27,7 +27,7 @@ jobs:
           - https://superset.cdssandbox.xyz/
     steps:
       - name: Checkout
-        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
         with:
           persist-credentials: false
 
@@ -38,7 +38,7 @@ jobs:
             --output security-txt-results.jsonl
 
       - name: Forward results to Sentinel
-        uses: cds-snc/sentinel-forward-data-action@caddd5bfbc4032de258dbf4b475a013d1f923a37 # main
+        uses: cds-snc/sentinel-forward-data-action@e358bf24b818e68a22c9736715a3b544851aaba8 # main
         with:
           file_name: security-txt-results.jsonl
           log_type: CDS_SecurityTxt_Results
